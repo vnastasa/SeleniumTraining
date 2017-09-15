@@ -1,9 +1,0 @@
-/.classpath
-/.project
-.settings
-/*.target/
-/target/test-classes/iovio
-/target/classes/util
-/target/classes/iovio/pages
-/target/classes
-/src/main/java/util/*.DS_Store
