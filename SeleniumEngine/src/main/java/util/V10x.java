@@ -22,12 +22,12 @@ public class V10x {
 
 	public static void main(String[] args) {
 
-		String url = "https://aws.amazon.com/";
+		String url = "";
 		Map<String, Integer> _xpaths = new HashMap<String, Integer>();
 		List<String> xpathsList = new ArrayList<String>();
 		IDriver.get(url);
 
-		for (String t : V10.tags) {
+		for (String t : V10.HTMLtags) {
 			xpathsList.addAll(V10.gather(url, By.tagName(t)));
 		}
 		for (String xpath : xpathsList) {
