@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>iovio</groupId>
-	<artifactId>SeleniumTraining</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<artifactId>SeleniumEngine</artifactId>
+	<version>0.0.5-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>SeleniumTraining</name>
+	<name>SeleniumBase</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,7 +24,12 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>2.53.1</version>
+			<version>3.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>rest</artifactId>
+			<version>5.5.0</version>
 		</dependency>
 	</dependencies>
 	<organization>

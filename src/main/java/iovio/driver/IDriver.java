@@ -1,5 +1,6 @@
 package iovio.driver;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -30,7 +32,9 @@ public class IDriver {
 	public static Actions actions = new Actions(driver);
 
 	public IDriver(FirefoxDriver firefoxDriver) {
-		IDriver.driver = firefoxDriver;
+		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+		System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
+		driver = new FirefoxDriver(capabilities);
 	}
 
 	/**
@@ -427,7 +431,8 @@ public class IDriver {
 	 */
 	public static void quit() {
 		driver.quit();
-		System.out.println("...::IovioDriver Terminated Successfully::...");
+		killGeckoDriver();
+		System.out.println("...::IDriver Terminated Successfully::...");
 	}
 
 	/**
@@ -483,6 +488,17 @@ public class IDriver {
 	 */
 	public static void pressEnter(By selector) {
 		driver.findElement(selector).sendKeys(Keys.RETURN);
+	}
+
+	public static void killGeckoDriver() {
+		try {
+			Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
+			System.out.println("...::GeckoDriver Terminated Successfully::...");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 }

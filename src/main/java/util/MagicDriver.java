@@ -30,8 +30,7 @@ public class MagicDriver {
 			System.out.println("Something went wrong... " + e.getMessage());
 		}
 	}
-	
-	
+
 	/**
 	 * Waits for an element for 10 seconds  while checking every 10 milliseconds 
 	 * that the element has reached an invisible state
@@ -42,7 +41,26 @@ public class MagicDriver {
 		try {
 			WebDriverWait wait = new WebDriverWait((WebDriver) IDriver.driver, 60);
 			wait.ignoring(StaleElementReferenceException.class, NoSuchElementException.class)
-					.pollingEvery(10, TimeUnit.MILLISECONDS).until(ExpectedConditions.invisibilityOfElementLocated(selector));
+					.pollingEvery(10, TimeUnit.MILLISECONDS)
+					.until(ExpectedConditions.invisibilityOfElementLocated(selector));
+		} catch (Exception e) {
+			System.out.println("Something went wrong... " + e.getMessage());
+		}
+	}
+
+	/**
+	 * Waits for an element for 10 seconds while checking every 10 milliseconds
+	 * that the element has reached an visible state
+	 * 
+	 * @param selector
+	 *            The selector the WebElement the method is waiting for
+	 */
+	public static void waitForElementVisibility(By selector) {
+		try {
+			WebDriverWait wait = new WebDriverWait((WebDriver) IDriver.driver, 60);
+			wait.ignoring(StaleElementReferenceException.class, NoSuchElementException.class)
+					.pollingEvery(10, TimeUnit.MILLISECONDS)
+					.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(selector));
 		} catch (Exception e) {
 			System.out.println("Something went wrong... " + e.getMessage());
 		}
@@ -58,7 +76,7 @@ public class MagicDriver {
 		waitForElement(selector);
 		IDriver.click(selector);
 	}
-	
+
 	/**
 	 * Double clicks a WebElement via Actions class while waiting for the element to be clickable
 	 */
